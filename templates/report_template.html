@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em; /* Reduced size for the main heading */
+        }
+        h2 {
+            font-size: 1.8em; /* Reduced size for section headings */
+        }
+        .section {
+            margin-bottom: 30px; /* Adjusted margin */
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+        }
+        .figure-container {
+            margin: 15px 0; /* Adjusted margin */
+        }
+        .figure-caption {
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+            font-size: 1em; /* Adjusted size for captions */
+        }
+        .paragraph {
+            margin-top: 10px;
+            font-size: 0.9em; /* Adjusted size for paragraphs */
+            color: #333;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            .figure-container {
+                margin: 10px 0; /* Adjust margin for printing */
+            }
+
+        .report-table {
+            width: 100%; /* Adjust the width as needed */
+            max-width: 400px; /* Set a maximum width if desired */
+        }
+
+        .report-table th, .report-table td {
+            border: 0.01px solid #ddd; /* Add borders to table cells */
+            padding: 0.08px; /* Adjust padding for table cells */
+            text-align: left; /* Align text to the left */
+        }
+
+        .report-table th {
+            background-color: #f2f2f2; /* Add background color to table headers */
+            font-weight: small; /* Make header text bold */
+        }
+
+        @media print {
+            .report-table {
+                width: 100%; /* Ensure tables take full width in print */
+                max-width: 400; /* Remove max-width for print */
+    }
+}
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Preliminary Wind Resource Assessment</h1>
+
+    <div class="section">
+        <h2> 1.1 DataSource</h2> 
+        <p>There were no suitable measurements obtained on-site. The primary source of wind data used to characterize the wind climate 
+            prevailing at the site was the ERA5 reanalysis dataset. Atmospheric reanalysis is a hindcast process that assimilates data 
+            from multiple sources of observation into a simulation to provide a single consistent representation of past meteorological 
+            conditions. ERA5 (ECMWF Re-Analysis 5) is a reanalysis data product provided by European Centre for Medium-Range Weather Forecasts 
+            (ECMWF). Alternative sources of reanalysis data include MERRA-2. ERA5 was selected because the node for which it was available was 
+            closest to the site, and studies comparing reanalysis and direct observation in this region indicate ERA5 performs most satisfactorily.</p>
+
+        <p>{{ datasource_input }}. Hourly wind speed, direction, temperature, and pressure values at a height of 100 meters were obtained for 
+            a PoR of {{ PoR_input }}. This PoR was considered sufficiently 
+            representative of long-term conditions on-site, and 100 meters was considered the height closest to potential wind turbine generator (WTG) hub heights for which data were available.</p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_1.src }}">
+                <figcaption>Figure 1.1 Location of the Project</figcaption>
+            </div>
+
+        <p>These wind data are suitable for the purposes of preliminary energy yield estimation for conceptual design, feasibility studies, WTG technology selection, and project configuration; 
+            however, site classification, engineering design, and bank-grade energy yield estimation for financial purposes require direct wind measurements obtained on-site for a PoR of at least 1 year 
+            to support confidence in the observed wind climate and provide detailed information regarding directly measured wind conditions. These measurements may be made using light detection and ranging 
+            (LiDAR) in a variety of configurations (e.g., vertically profiling or scanning instruments installed on the platforms, or floating LiDAR systems deployed near to the platforms). Black & Veatch has 
+            in-depth experience and expertise with these measurement technologies and stand ready to advise should it be deemed necessary to design and execute a wind measurement campaign.</p>
+    </div>
+
+    <div class="'section">
+        <h2> 1.2 Wind Analysis</h2> 
+        <h3> 1.2.1 Weibull Distribution</h3>
+        <p>Wind speed data were density corrected to 1.225 kg/m3 as this was the air density for which WTG power curve information was valid. The density correction was applied using temperature and 
+            pressure data in accordance with IEC 61400-12-1:2005, Clause 8.1. The average density observed in the data was {{avg_density}} kg/m3. The mean wind speed at 100 meters recorded in the ERA5 data during 
+            the PoR was {{ avg_ws }} m/s while the mean density corrected value was {{ avg_ws_corrected }} m/s. All the wind speeds are mean wind spend in this study.</p>
+            
+            The wind data were extrapolated from 100 meters to a height of 150 meters, which was considered to be more representative of the eventual WTG hub height. A power law model of wind shear 
+            with an exponent of 0.1 was applied to extrapolate wind speeds to a hub height of 150 meters above sea level. The mean wind speed during the PoR after density correction and extrapolation 
+            to a hub height of 150 meters was {{ avg_ws_h_corrected}} m/s.
+
+            The hub height of 150 meters includes the height of the tower and the height interval between the interface of the tower with the foundation at the transition piece and the mean sea level. 
+            Heights are stated relative to sea level. For example, the height of the tower may be approximately 130 meters and the interval between the interface of the tower with the foundation and sea level may be approximately 20 meters. 
+
+            <!-- need to be able to deal with onshore vs offshore scenarios -->
+            A wind shear exponent, α,  of 0.1 was considered representative of offshore conditions. The wind shear exponent describes how wind speed varies with height in accordance with a power law:  u1/u0 = (z1/z0) α 
+            where u1 is the wind speed at height z1, u0 is the wind speed at height z0, and z1 and z0 are heights 1 and 0. α is the wind shear exponent, which is 0.1 in this case. A wind measurement campaign on-site would be 
+            required to establish this more precisely. The wind shear is determined by influences such as the wave climate and the prevailing atmospheric stability and stratification, which are likely to exhibit strong directional, 
+            diurnal, and seasonal dependencies. <br><br>
+
+            The frequency distribution of the density corrected and vertically extrapolated wind speeds during the PoR is shown on Figure 1.2, with the Weibull distribution fitted to the data. 
+            
+            <!-- The results are given in Table 4 1, 
+            showing the Weibull shape k (-) and scale λ (m/s) parameters and the mean wind speed μ (m/s) for each direction sector, for the ERA5 data at 100 meters above sea level, the data once adjusted for air density, 
+            and the results after extrapolation to a hub height of 150 meters above sea level.  -->
+
+            <div class="figure-container">
+                <img src="{{ figure_1_2.src }}" >
+                <figcaption>Figure 1.2 Weibull Distribution</figcaption>
+            </div>
+        
+
+        <h3> 1.2.2 Directional and Seasonal Variations</h3>
+        <p> The directional variation is shown in the wind rose on Figure 1.3. 
+            {{ wsd_input }} </p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_3.src }}" >
+                <figcaption>Figure 1.3 Wind Rose</figcaption>
+            </div>
+
+        <p> The seasonal variation is shown on Figure 1.4, where the 8,760 hours of the year are represented by the angle of a polar plot and the average wind speed for that hour by the radius. The year proceeds clockwise from the January. 
+            A circle is fitted to the data, and the displacement of the center of the circle from the origin corresponds to the high season when the strongest winds occur. 
+            This is in {{ high_season_m }}, with a seasonality of {{ seasonality_pct }} percent, which is the ratio of the distance of the center of the circle from the origin to the average wind speed, normalized by a factor of π/4 
+            corresponding to the maximum value of the average that occurs for a unit circle passing through the origin. </p>
+            
+            <div class="figure-container">
+                <img src="{{ figure_1_4.src }}" >
+                <figcaption>Figure 1.4 Seasonality</figcaption>
+            </div>
+        
+        <p> The seasonal variation is also represented by the monthly averages shown on Figure 1.5 and Figure 1.6. The periods in {{ ws_month_peak }} have much higher wind speed. The monthly wind rose illustrates dramatic wind orientation in different months on Figure 1.6.  </p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_5.src }}" width="600" height="300">
+                <figcaption>Figure 1.5 Monthly Average Wind Speed</figcaption>
+            </div>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_6.src }}" width="600" height="800">
+                <figcaption>Figure 1.6 Monthly Wind Rose</figcaption>
+            </div>
+        
+        <br><br>
+        <p> The following Figure 1.7 shows the average windspeed for each direction</p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_8.src }}" width="600" height="800">
+                <figcaption>Figure 1.7 Average Wind Speeds in Each Direction</figcaption>
+            </div>
+        
+
+        <h3> 1.2.3 Diurnal Variations</h3>
+        <p> In addition to directional and seasonal variation, a diurnal variation is observed. Wind speeds averaged by hour and month are shown in Table 1.1 </p>
+        
+            <div class="container">
+            <h4> Table 1.1</h4>
+                <div class="report-table">
+                    {{ df_html|safe }}
+                </div>
+
+            </div>
+        
+        <p> The deviation of each hourly average for a month from the monthly average is shown on Table 1.2. </p>
+
+            <div class="container">
+            <h4> Table 1.2</h4>
+                <div class="report-table">
+                    {{ df_html_styled|safe }}
+                </div>
+            </div>
+        
+        <p> Figure 1.8 shows the diurnal variation, average hourly windspeed, and the time of occurence of the maximum and minimum windspeed for a given month. </p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_7.src }}" >
+                <figcaption>Figure 1.8 Diurnal Variation</figcaption>
+            </div>
+
+        <h2> 1.3 Configuration Study</h2>
+        <h3> 1.3.1 Single Turbine</h3>
+        <p> The following figure illustrates the net capacity factor of single turbine at various heights. The net capacity factor is calculated as followingsNet Capacity Factor (%) = (total energy production of 20 yeas)/20/(rated output of wind turbine x 8760) 
+            Rated output - 6500kW, 7000kW or 8000 kW etc. </p>
+        
+        <div class="figure-container">
+            <img src="{{ figure_1_11.src }}" width="600" height="300">
+            <figcaption>Figure 1.9 Gross Capacity (%) for Each WTG</figcaption>
+        </div>
+
+        <h3> 1.3.2 Estimate Coverages for Various Configurations with Bess (One WTG)</h3>
+        <p> </p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_9.src }}" width="600" height="300">
+                <figcaption>Figure 1.10 Changes in Coverage with BESS Configurations</figcaption>
+            </div>
+
+        <h3> 1.3.3 Coverage Change with Hub Height</h3>
+        <p> </p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_10.src }}" width="600" height="300">
+                <figcaption>Figure 1.11 Changes in Coverage with Height</figcaption>
+
+            </div>
+        
+        <h3> 1.3.4 Coverage Change with Increasing Number of WTGs</h3>
+        <p> The following figure shows the change in coverage with increasing number of WTGs, where BESS storage is kept at the most efficient level and the height set to 100m.</p>
+
+            <div class="figure-container">
+                <img src="{{ figure_1_12.src }}" width="600" height="300">
+                <figcaption>Figure 1.12 Changes in Coverage with Different Numbers of WTGs</figcaption>
+            </div>
+
+
+    </div>
+    </div>
+    
+
+
+
+
+
+
+
+</body>
+</html>

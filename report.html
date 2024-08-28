@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em; /* Reduced size for the main heading */
+        }
+        h2 {
+            font-size: 1.8em; /* Reduced size for section headings */
+        }
+        .section {
+            margin-bottom: 30px; /* Adjusted margin */
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+        }
+        .figure-container {
+            margin: 15px 0; /* Adjusted margin */
+        }
+        .figure-caption {
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+            font-size: 1em; /* Adjusted size for captions */
+        }
+        .paragraph {
+            margin-top: 10px;
+            font-size: 0.9em; /* Adjusted size for paragraphs */
+            color: #333;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            .figure-container {
+                margin: 10px 0; /* Adjust margin for printing */
+            }
+
+        .report-table {
+            width: 100%; /* Adjust the width as needed */
+            max-width: 400px; /* Set a maximum width if desired */
+        }
+
+        .report-table th, .report-table td {
+            border: 0.01px solid #ddd; /* Add borders to table cells */
+            padding: 0.08px; /* Adjust padding for table cells */
+            text-align: left; /* Align text to the left */
+        }
+
+        .report-table th {
+            background-color: #f2f2f2; /* Add background color to table headers */
+            font-weight: small; /* Make header text bold */
+        }
+
+        @media print {
+            .report-table {
+                width: 100%; /* Ensure tables take full width in print */
+                max-width: 400; /* Remove max-width for print */
+    }
+}
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Preliminary Wind Resource Assessment</h1>
+
+    <div class="section">
+        <h2> 1.1 DataSource</h2> 
+        <p>There were no suitable measurements obtained on-site. The primary source of wind data used to characterize the wind climate 
+            prevailing at the site was the ERA5 reanalysis dataset. Atmospheric reanalysis is a hindcast process that assimilates data 
+            from multiple sources of observation into a simulation to provide a single consistent representation of past meteorological 
+            conditions. ERA5 (ECMWF Re-Analysis 5) is a reanalysis data product provided by European Centre for Medium-Range Weather Forecasts 
+            (ECMWF). Alternative sources of reanalysis data include MERRA-2. ERA5 was selected because the node for which it was available was 
+            closest to the site, and studies comparing reanalysis and direct observation in this region indicate ERA5 performs most satisfactorily.</p>
+
+        <p>Four close ERA5 data nodes are used to interpolate the condition at the potential site of the wind farm (28.25, 34.9). The four nodes are located at: (28.25, 34.75) and (28.25, 35.0)respectively, as shown in Figure 1.1. Hourly wind speed, direction, temperature, and pressure values at a height of 100 meters were obtained for 
+            a PoR of 6 years from 2019-01-01 00:00:00 to 2024-08-17 17:00:00. This PoR was considered sufficiently 
+            representative of long-term conditions on-site, and 100 meters was considered the height closest to potential wind turbine generator (WTG) hub heights for which data were available.</p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/data_source.png">
+                <figcaption>Figure 1.1 Location of the Project</figcaption>
+            </div>
+
+        <p>These wind data are suitable for the purposes of preliminary energy yield estimation for conceptual design, feasibility studies, WTG technology selection, and project configuration; 
+            however, site classification, engineering design, and bank-grade energy yield estimation for financial purposes require direct wind measurements obtained on-site for a PoR of at least 1 year 
+            to support confidence in the observed wind climate and provide detailed information regarding directly measured wind conditions. These measurements may be made using light detection and ranging 
+            (LiDAR) in a variety of configurations (e.g., vertically profiling or scanning instruments installed on the platforms, or floating LiDAR systems deployed near to the platforms). Black & Veatch has 
+            in-depth experience and expertise with these measurement technologies and stand ready to advise should it be deemed necessary to design and execute a wind measurement campaign.</p>
+    </div>
+
+    <div class="'section">
+        <h2> 1.2 Wind Analysis</h2> 
+        <h3> 1.2.1 Weibull Distribution</h3>
+        <p>Wind speed data were density corrected to 1.225 kg/m3 as this was the air density for which WTG power curve information was valid. The density correction was applied using temperature and 
+            pressure data in accordance with IEC 61400-12-1:2005, Clause 8.1. The average density observed in the data was 1.162 kg/m3. The mean wind speed at 100 meters recorded in the ERA5 data during 
+            the PoR was 5.803 m/s while the mean density corrected value was 5.7 m/s. All the wind speeds are mean wind spend in this study.</p>
+            
+            The wind data were extrapolated from 100 meters to a height of 150 meters, which was considered to be more representative of the eventual WTG hub height. A power law model of wind shear 
+            with an exponent of 0.1 was applied to extrapolate wind speeds to a hub height of 150 meters above sea level. The mean wind speed during the PoR after density correction and extrapolation 
+            to a hub height of 150 meters was 5.936 m/s.
+
+            The hub height of 150 meters includes the height of the tower and the height interval between the interface of the tower with the foundation at the transition piece and the mean sea level. 
+            Heights are stated relative to sea level. For example, the height of the tower may be approximately 130 meters and the interval between the interface of the tower with the foundation and sea level may be approximately 20 meters. 
+
+            <!-- need to be able to deal with onshore vs offshore scenarios -->
+            A wind shear exponent, α,  of 0.1 was considered representative of offshore conditions. The wind shear exponent describes how wind speed varies with height in accordance with a power law:  u1/u0 = (z1/z0) α 
+            where u1 is the wind speed at height z1, u0 is the wind speed at height z0, and z1 and z0 are heights 1 and 0. α is the wind shear exponent, which is 0.1 in this case. A wind measurement campaign on-site would be 
+            required to establish this more precisely. The wind shear is determined by influences such as the wave climate and the prevailing atmospheric stability and stratification, which are likely to exhibit strong directional, 
+            diurnal, and seasonal dependencies. <br><br>
+
+            The frequency distribution of the density corrected and vertically extrapolated wind speeds during the PoR is shown on Figure 1.2, with the Weibull distribution fitted to the data. 
+            
+            <!-- The results are given in Table 4 1, 
+            showing the Weibull shape k (-) and scale λ (m/s) parameters and the mean wind speed μ (m/s) for each direction sector, for the ERA5 data at 100 meters above sea level, the data once adjusted for air density, 
+            and the results after extrapolation to a hub height of 150 meters above sea level.  -->
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/weibull_dist.png" >
+                <figcaption>Figure 1.2 Weibull Distribution</figcaption>
+            </div>
+        
+
+        <h3> 1.2.2 Directional and Seasonal Variations</h3>
+        <p> The directional variation is shown in the wind rose on Figure 1.3. 
+            There are 2 main directions represented in the wind rose, including average winds: winds from North-Northeast with average wind speed of 4.36 m/s, winds from North with average wind speed of 6.66 m/s. </p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/wind_rose.png" >
+                <figcaption>Figure 1.3 Wind Rose</figcaption>
+            </div>
+
+        <p> The seasonal variation is shown on Figure 1.4, where the 8,760 hours of the year are represented by the angle of a polar plot and the average wind speed for that hour by the radius. The year proceeds clockwise from the January. 
+            A circle is fitted to the data, and the displacement of the center of the circle from the origin corresponds to the high season when the strongest winds occur. 
+            This is in June, with a seasonality of 20.8 percent, which is the ratio of the distance of the center of the circle from the origin to the average wind speed, normalized by a factor of π/4 
+            corresponding to the maximum value of the average that occurs for a unit circle passing through the origin. </p>
+            
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/seasonality_plot.png" >
+                <figcaption>Figure 1.4 Seasonality</figcaption>
+            </div>
+        
+        <p> The seasonal variation is also represented by the monthly averages shown on Figure 1.5 and Figure 1.6. The periods in June and September have much higher wind speed. The monthly wind rose illustrates dramatic wind orientation in different months on Figure 1.6.  </p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/avg_monthly_ws.png" width="600" height="300">
+                <figcaption>Figure 1.5 Monthly Average Wind Speed</figcaption>
+            </div>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/monthly_wind_rose.png" width="600" height="800">
+                <figcaption>Figure 1.6 Monthly Wind Rose</figcaption>
+            </div>
+        
+        <br><br>
+        <p> The following Figure 1.7 shows the average windspeed for each direction</p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/avg_direction_ws.png" width="600" height="800">
+                <figcaption>Figure 1.7 Average Wind Speeds in Each Direction</figcaption>
+            </div>
+        
+
+        <h3> 1.2.3 Diurnal Variations</h3>
+        <p> In addition to directional and seasonal variation, a diurnal variation is observed. Wind speeds averaged by hour and month are shown in Table 1.1 </p>
+        
+            <div class="container">
+                <div class="report-table">
+                    <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Average</th>
+    </tr>
+    <tr>
+      <th>Hour\Month</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.94</td>
+      <td>5.67</td>
+      <td>6.15</td>
+      <td>6.54</td>
+      <td>7.04</td>
+      <td>7.66</td>
+      <td>6.63</td>
+      <td>6.36</td>
+      <td>7.56</td>
+      <td>6.54</td>
+      <td>5.71</td>
+      <td>5.25</td>
+      <td>6.34</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.04</td>
+      <td>5.73</td>
+      <td>6.16</td>
+      <td>6.53</td>
+      <td>6.97</td>
+      <td>7.51</td>
+      <td>6.62</td>
+      <td>6.31</td>
+      <td>7.49</td>
+      <td>6.54</td>
+      <td>5.69</td>
+      <td>5.28</td>
+      <td>6.32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.12</td>
+      <td>5.74</td>
+      <td>6.15</td>
+      <td>6.46</td>
+      <td>6.89</td>
+      <td>7.42</td>
+      <td>6.58</td>
+      <td>6.28</td>
+      <td>7.43</td>
+      <td>6.54</td>
+      <td>5.63</td>
+      <td>5.30</td>
+      <td>6.29</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.13</td>
+      <td>5.73</td>
+      <td>6.16</td>
+      <td>6.38</td>
+      <td>6.76</td>
+      <td>7.30</td>
+      <td>6.50</td>
+      <td>6.25</td>
+      <td>7.36</td>
+      <td>6.51</td>
+      <td>5.57</td>
+      <td>5.31</td>
+      <td>6.25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.09</td>
+      <td>5.68</td>
+      <td>6.12</td>
+      <td>6.23</td>
+      <td>6.51</td>
+      <td>7.06</td>
+      <td>6.28</td>
+      <td>6.15</td>
+      <td>7.25</td>
+      <td>6.46</td>
+      <td>5.50</td>
+      <td>5.28</td>
+      <td>6.13</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.00</td>
+      <td>5.50</td>
+      <td>5.93</td>
+      <td>6.17</td>
+      <td>6.82</td>
+      <td>7.72</td>
+      <td>6.65</td>
+      <td>6.31</td>
+      <td>7.26</td>
+      <td>6.27</td>
+      <td>5.23</td>
+      <td>5.14</td>
+      <td>6.17</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4.51</td>
+      <td>5.31</td>
+      <td>6.36</td>
+      <td>6.56</td>
+      <td>7.26</td>
+      <td>8.35</td>
+      <td>7.38</td>
+      <td>7.05</td>
+      <td>8.15</td>
+      <td>6.94</td>
+      <td>5.18</td>
+      <td>4.67</td>
+      <td>6.48</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>4.72</td>
+      <td>5.87</td>
+      <td>6.64</td>
+      <td>6.40</td>
+      <td>7.07</td>
+      <td>8.21</td>
+      <td>7.29</td>
+      <td>7.01</td>
+      <td>8.32</td>
+      <td>7.13</td>
+      <td>5.45</td>
+      <td>4.89</td>
+      <td>6.58</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.75</td>
+      <td>5.73</td>
+      <td>6.34</td>
+      <td>5.88</td>
+      <td>6.59</td>
+      <td>7.69</td>
+      <td>6.75</td>
+      <td>6.52</td>
+      <td>7.82</td>
+      <td>6.52</td>
+      <td>5.08</td>
+      <td>4.94</td>
+      <td>6.22</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4.46</td>
+      <td>5.35</td>
+      <td>5.95</td>
+      <td>5.60</td>
+      <td>6.29</td>
+      <td>7.14</td>
+      <td>6.13</td>
+      <td>6.06</td>
+      <td>7.18</td>
+      <td>5.80</td>
+      <td>4.53</td>
+      <td>4.79</td>
+      <td>5.77</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>4.42</td>
+      <td>5.20</td>
+      <td>5.96</td>
+      <td>5.62</td>
+      <td>6.21</td>
+      <td>6.58</td>
+      <td>5.41</td>
+      <td>5.74</td>
+      <td>6.74</td>
+      <td>5.59</td>
+      <td>4.49</td>
+      <td>4.81</td>
+      <td>5.56</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4.32</td>
+      <td>5.12</td>
+      <td>5.91</td>
+      <td>5.73</td>
+      <td>6.23</td>
+      <td>6.35</td>
+      <td>5.26</td>
+      <td>5.54</td>
+      <td>6.26</td>
+      <td>5.19</td>
+      <td>4.33</td>
+      <td>4.71</td>
+      <td>5.41</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>4.30</td>
+      <td>5.16</td>
+      <td>5.88</td>
+      <td>5.78</td>
+      <td>6.18</td>
+      <td>6.13</td>
+      <td>5.15</td>
+      <td>5.38</td>
+      <td>5.86</td>
+      <td>5.01</td>
+      <td>4.20</td>
+      <td>4.71</td>
+      <td>5.31</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>4.35</td>
+      <td>5.35</td>
+      <td>5.95</td>
+      <td>5.78</td>
+      <td>6.23</td>
+      <td>5.96</td>
+      <td>5.08</td>
+      <td>5.31</td>
+      <td>5.68</td>
+      <td>5.03</td>
+      <td>4.29</td>
+      <td>4.79</td>
+      <td>5.32</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>4.45</td>
+      <td>5.53</td>
+      <td>6.10</td>
+      <td>5.87</td>
+      <td>6.33</td>
+      <td>5.94</td>
+      <td>5.08</td>
+      <td>5.29</td>
+      <td>5.75</td>
+      <td>5.11</td>
+      <td>4.40</td>
+      <td>4.76</td>
+      <td>5.38</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>4.15</td>
+      <td>5.35</td>
+      <td>6.03</td>
+      <td>5.87</td>
+      <td>6.32</td>
+      <td>5.97</td>
+      <td>5.10</td>
+      <td>5.26</td>
+      <td>5.70</td>
+      <td>4.75</td>
+      <td>4.03</td>
+      <td>4.36</td>
+      <td>5.24</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>3.99</td>
+      <td>4.94</td>
+      <td>5.39</td>
+      <td>5.13</td>
+      <td>5.52</td>
+      <td>5.35</td>
+      <td>4.59</td>
+      <td>4.75</td>
+      <td>5.46</td>
+      <td>4.56</td>
+      <td>3.91</td>
+      <td>4.24</td>
+      <td>4.82</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>3.88</td>
+      <td>4.88</td>
+      <td>5.22</td>
+      <td>4.91</td>
+      <td>5.20</td>
+      <td>5.19</td>
+      <td>4.03</td>
+      <td>4.39</td>
+      <td>5.73</td>
+      <td>4.72</td>
+      <td>3.99</td>
+      <td>4.23</td>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3.87</td>
+      <td>4.96</td>
+      <td>5.27</td>
+      <td>5.17</td>
+      <td>5.48</td>
+      <td>5.69</td>
+      <td>4.03</td>
+      <td>4.54</td>
+      <td>6.31</td>
+      <td>5.22</td>
+      <td>4.25</td>
+      <td>4.36</td>
+      <td>4.93</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>4.06</td>
+      <td>5.11</td>
+      <td>5.55</td>
+      <td>5.70</td>
+      <td>6.10</td>
+      <td>6.50</td>
+      <td>4.73</td>
+      <td>5.05</td>
+      <td>7.02</td>
+      <td>5.73</td>
+      <td>4.64</td>
+      <td>4.58</td>
+      <td>5.4</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>4.34</td>
+      <td>5.27</td>
+      <td>5.79</td>
+      <td>6.18</td>
+      <td>6.65</td>
+      <td>7.23</td>
+      <td>5.58</td>
+      <td>5.66</td>
+      <td>7.53</td>
+      <td>6.10</td>
+      <td>5.06</td>
+      <td>4.79</td>
+      <td>5.85</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>4.58</td>
+      <td>5.41</td>
+      <td>5.95</td>
+      <td>6.45</td>
+      <td>6.99</td>
+      <td>7.74</td>
+      <td>6.22</td>
+      <td>6.16</td>
+      <td>7.73</td>
+      <td>6.31</td>
+      <td>5.34</td>
+      <td>4.95</td>
+      <td>6.15</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>4.79</td>
+      <td>5.47</td>
+      <td>5.95</td>
+      <td>6.45</td>
+      <td>6.98</td>
+      <td>7.60</td>
+      <td>6.21</td>
+      <td>6.24</td>
+      <td>7.59</td>
+      <td>6.32</td>
+      <td>5.51</td>
+      <td>5.10</td>
+      <td>6.18</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>4.89</td>
+      <td>5.59</td>
+      <td>6.03</td>
+      <td>6.57</td>
+      <td>7.10</td>
+      <td>7.62</td>
+      <td>6.47</td>
+      <td>6.42</td>
+      <td>7.63</td>
+      <td>6.40</td>
+      <td>5.64</td>
+      <td>5.20</td>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <th>Average</th>
+      <td>4.55</td>
+      <td>5.40</td>
+      <td>5.96</td>
+      <td>6.00</td>
+      <td>6.49</td>
+      <td>6.91</td>
+      <td>5.82</td>
+      <td>5.84</td>
+      <td>6.95</td>
+      <td>5.89</td>
+      <td>4.90</td>
+      <td>4.85</td>
+      <td>5.8</td>
+    </tr>
+    <tr>
+      <th>Minimum</th>
+      <td>3.87</td>
+      <td>4.88</td>
+      <td>5.22</td>
+      <td>4.91</td>
+      <td>5.20</td>
+      <td>5.19</td>
+      <td>4.03</td>
+      <td>4.39</td>
+      <td>5.46</td>
+      <td>4.56</td>
+      <td>3.91</td>
+      <td>4.23</td>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>Maximum</th>
+      <td>5.13</td>
+      <td>5.87</td>
+      <td>6.64</td>
+      <td>6.57</td>
+      <td>7.26</td>
+      <td>8.35</td>
+      <td>7.38</td>
+      <td>7.05</td>
+      <td>8.32</td>
+      <td>7.13</td>
+      <td>5.71</td>
+      <td>5.31</td>
+      <td>6.58</td>
+    </tr>
+    <tr>
+      <th>Range</th>
+      <td>1.26</td>
+      <td>0.99</td>
+      <td>1.43</td>
+      <td>1.66</td>
+      <td>2.06</td>
+      <td>3.16</td>
+      <td>3.35</td>
+      <td>2.67</td>
+      <td>2.86</td>
+      <td>2.57</td>
+      <td>1.80</td>
+      <td>1.08</td>
+      <td>1.88</td>
+    </tr>
+    <tr>
+      <th>time_of_min</th>
+      <td>18.00</td>
+      <td>17.00</td>
+      <td>17.00</td>
+      <td>17.00</td>
+      <td>17.00</td>
+      <td>17.00</td>
+      <td>18.00</td>
+      <td>17.00</td>
+      <td>16.00</td>
+      <td>16.00</td>
+      <td>16.00</td>
+      <td>17.00</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>time_of_max</th>
+      <td>3.00</td>
+      <td>7.00</td>
+      <td>7.00</td>
+      <td>23.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+      <td>7.00</td>
+      <td>7.00</td>
+      <td>0.00</td>
+      <td>3.00</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+                    <h4> Table 1.1</h4>
+                </div>
+
+            </div>
+        
+        <p> The deviation of each hourly average for a month from the monthly average is shown on Table 1.2. </p>
+
+            <div class="container">
+                <div class="report-table">
+                    <style type="text/css">
+#T_b7f6f_row0_col0 {
+  background-color: #3faa59;
+  color: #f1f1f1;
+}
+#T_b7f6f_row0_col1, #T_b7f6f_row5_col5, #T_b7f6f_row8_col7 {
+  background-color: #66bd63;
+  color: #f1f1f1;
+}
+#T_b7f6f_row0_col2, #T_b7f6f_row2_col2, #T_b7f6f_row21_col6 {
+  background-color: #bde379;
+  color: #000000;
+}
+#T_b7f6f_row0_col3 {
+  background-color: #04703b;
+  color: #f1f1f1;
+}
+#T_b7f6f_row0_col4 {
+  background-color: #1e9a51;
+  color: #f1f1f1;
+}
+#T_b7f6f_row0_col5, #T_b7f6f_row5_col6 {
+  background-color: #70c164;
+  color: #000000;
+}
+#T_b7f6f_row0_col6 {
+  background-color: #75c465;
+  color: #000000;
+}
+#T_b7f6f_row0_col7, #T_b7f6f_row4_col9 {
+  background-color: #8ccd67;
+  color: #000000;
+}
+#T_b7f6f_row0_col8, #T_b7f6f_row1_col5, #T_b7f6f_row5_col10 {
+  background-color: #91d068;
+  color: #000000;
+}
+#T_b7f6f_row0_col9, #T_b7f6f_row1_col6, #T_b7f6f_row1_col9, #T_b7f6f_row2_col9 {
+  background-color: #78c565;
+  color: #000000;
+}
+#T_b7f6f_row0_col10, #T_b7f6f_row3_col0, #T_b7f6f_row3_col11, #T_b7f6f_row6_col4, #T_b7f6f_row6_col5, #T_b7f6f_row6_col6, #T_b7f6f_row6_col7, #T_b7f6f_row7_col1, #T_b7f6f_row7_col2, #T_b7f6f_row7_col8, #T_b7f6f_row7_col9, #T_b7f6f_row23_col3 {
+  background-color: #006837;
+  color: #f1f1f1;
+}
+#T_b7f6f_row0_col11 {
+  background-color: #0e8245;
+  color: #f1f1f1;
+}
+#T_b7f6f_row1_col0, #T_b7f6f_row6_col9, #T_b7f6f_row21_col3, #T_b7f6f_row22_col3 {
+  background-color: #128a49;
+  color: #f1f1f1;
+}
+#T_b7f6f_row1_col1, #T_b7f6f_row1_col4, #T_b7f6f_row3_col1, #T_b7f6f_row7_col10, #T_b7f6f_row8_col1 {
+  background-color: #39a758;
+  color: #f1f1f1;
+}
+#T_b7f6f_row1_col2, #T_b7f6f_row3_col2, #T_b7f6f_row4_col7 {
+  background-color: #b9e176;
+  color: #000000;
+}
+#T_b7f6f_row1_col3, #T_b7f6f_row7_col6 {
+  background-color: #06733d;
+  color: #f1f1f1;
+}
+#T_b7f6f_row1_col7, #T_b7f6f_row5_col7 {
+  background-color: #98d368;
+  color: #000000;
+}
+#T_b7f6f_row1_col8, #T_b7f6f_row2_col7 {
+  background-color: #a0d669;
+  color: #000000;
+}
+#T_b7f6f_row1_col10, #T_b7f6f_row2_col0, #T_b7f6f_row2_col11 {
+  background-color: #026c39;
+  color: #f1f1f1;
+}
+#T_b7f6f_row1_col11, #T_b7f6f_row4_col11 {
+  background-color: #07753e;
+  color: #f1f1f1;
+}
+#T_b7f6f_row2_col1, #T_b7f6f_row21_col4 {
+  background-color: #30a356;
+  color: #f1f1f1;
+}
+#T_b7f6f_row2_col3 {
+  background-color: #108647;
+  color: #f1f1f1;
+}
+#T_b7f6f_row2_col4 {
+  background-color: #54b45f;
+  color: #f1f1f1;
+}
+#T_b7f6f_row2_col5, #T_b7f6f_row6_col10, #T_b7f6f_row20_col4 {
+  background-color: #a2d76a;
+  color: #000000;
+}
+#T_b7f6f_row2_col6, #T_b7f6f_row3_col9, #T_b7f6f_row5_col3, #T_b7f6f_row23_col8 {
+  background-color: #7fc866;
+  color: #000000;
+}
+#T_b7f6f_row2_col8 {
+  background-color: #abdb6d;
+  color: #000000;
+}
+#T_b7f6f_row2_col10, #T_b7f6f_row7_col5 {
+  background-color: #0b7d42;
+  color: #f1f1f1;
+}
+#T_b7f6f_row3_col3, #T_b7f6f_row4_col10 {
+  background-color: #249d53;
+  color: #f1f1f1;
+}
+#T_b7f6f_row3_col4 {
+  background-color: #82c966;
+  color: #000000;
+}
+#T_b7f6f_row3_col5, #T_b7f6f_row3_col8, #T_b7f6f_row5_col9, #T_b7f6f_row21_col7, #T_b7f6f_row21_col11 {
+  background-color: #b7e075;
+  color: #000000;
+}
+#T_b7f6f_row3_col6 {
+  background-color: #8ecf67;
+  color: #000000;
+}
+#T_b7f6f_row3_col7 {
+  background-color: #a5d86a;
+  color: #000000;
+}
+#T_b7f6f_row3_col10, #T_b7f6f_row23_col4 {
+  background-color: #138c4a;
+  color: #f1f1f1;
+}
+#T_b7f6f_row4_col0 {
+  background-color: #08773f;
+  color: #f1f1f1;
+}
+#T_b7f6f_row4_col1, #T_b7f6f_row21_col5, #T_b7f6f_row22_col11 {
+  background-color: #60ba62;
+  color: #f1f1f1;
+}
+#T_b7f6f_row4_col2, #T_b7f6f_row4_col4 {
+  background-color: #c7e77f;
+  color: #000000;
+}
+#T_b7f6f_row4_col3, #T_b7f6f_row21_col8, #T_b7f6f_row21_col10 {
+  background-color: #69be63;
+  color: #f1f1f1;
+}
+#T_b7f6f_row4_col5 {
+  background-color: #dcf08f;
+  color: #000000;
+}
+#T_b7f6f_row4_col6 {
+  background-color: #b5df74;
+  color: #000000;
+}
+#T_b7f6f_row4_col8, #T_b7f6f_row5_col1, #T_b7f6f_row9_col6, #T_b7f6f_row9_col7 {
+  background-color: #cbe982;
+  color: #000000;
+}
+#T_b7f6f_row5_col0, #T_b7f6f_row7_col3, #T_b7f6f_row23_col11 {
+  background-color: #1b9950;
+  color: #f1f1f1;
+}
+#T_b7f6f_row5_col2, #T_b7f6f_row11_col4, #T_b7f6f_row13_col4 {
+  background-color: #feffbe;
+  color: #000000;
+}
+#T_b7f6f_row5_col4, #T_b7f6f_row8_col2 {
+  background-color: #6ec064;
+  color: #000000;
+}
+#T_b7f6f_row5_col8 {
+  background-color: #c9e881;
+  color: #000000;
+}
+#T_b7f6f_row5_col11 {
+  background-color: #45ad5b;
+  color: #f1f1f1;
+}
+#T_b7f6f_row6_col0 {
+  background-color: #fbfdba;
+  color: #000000;
+}
+#T_b7f6f_row6_col1, #T_b7f6f_row10_col0, #T_b7f6f_row19_col4 {
+  background-color: #feeb9d;
+  color: #000000;
+}
+#T_b7f6f_row6_col2 {
+  background-color: #63bc62;
+  color: #f1f1f1;
+}
+#T_b7f6f_row6_col3 {
+  background-color: #016a38;
+  color: #f1f1f1;
+}
+#T_b7f6f_row6_col8 {
+  background-color: #0f8446;
+  color: #f1f1f1;
+}
+#T_b7f6f_row6_col11 {
+  background-color: #fee28f;
+  color: #000000;
+}
+#T_b7f6f_row7_col0, #T_b7f6f_row8_col4 {
+  background-color: #b3df72;
+  color: #000000;
+}
+#T_b7f6f_row7_col4 {
+  background-color: #17934e;
+  color: #f1f1f1;
+}
+#T_b7f6f_row7_col7 {
+  background-color: #036e3a;
+  color: #f1f1f1;
+}
+#T_b7f6f_row7_col11 {
+  background-color: #d3ec87;
+  color: #000000;
+}
+#T_b7f6f_row8_col0, #T_b7f6f_row22_col7 {
+  background-color: #a7d96b;
+  color: #000000;
+}
+#T_b7f6f_row8_col3 {
+  background-color: #dff293;
+  color: #000000;
+}
+#T_b7f6f_row8_col5 {
+  background-color: #6bbf64;
+  color: #000000;
+}
+#T_b7f6f_row8_col6, #T_b7f6f_row23_col0 {
+  background-color: #5db961;
+  color: #f1f1f1;
+}
+#T_b7f6f_row8_col8 {
+  background-color: #51b35e;
+  color: #f1f1f1;
+}
+#T_b7f6f_row8_col9, #T_b7f6f_row20_col3, #T_b7f6f_row22_col5, #T_b7f6f_row23_col7 {
+  background-color: #7dc765;
+  color: #000000;
+}
+#T_b7f6f_row8_col10, #T_b7f6f_row22_col6 {
+  background-color: #bfe47a;
+  color: #000000;
+}
+#T_b7f6f_row8_col11, #T_b7f6f_row14_col1 {
+  background-color: #bbe278;
+  color: #000000;
+}
+#T_b7f6f_row9_col0 {
+  background-color: #fff5ae;
+  color: #000000;
+}
+#T_b7f6f_row9_col1, #T_b7f6f_row12_col4, #T_b7f6f_row13_col1, #T_b7f6f_row15_col1, #T_b7f6f_row19_col3 {
+  background-color: #fff7b2;
+  color: #000000;
+}
+#T_b7f6f_row9_col2, #T_b7f6f_row13_col2, #T_b7f6f_row21_col2, #T_b7f6f_row22_col2 {
+  background-color: #fafdb8;
+  color: #000000;
+}
+#T_b7f6f_row9_col3, #T_b7f6f_row19_col5 {
+  background-color: #fee593;
+  color: #000000;
+}
+#T_b7f6f_row9_col4 {
+  background-color: #f4fab0;
+  color: #000000;
+}
+#T_b7f6f_row9_col5 {
+  background-color: #d1ec86;
+  color: #000000;
+}
+#T_b7f6f_row9_col8, #T_b7f6f_row20_col9 {
+  background-color: #d9ef8b;
+  color: #000000;
+}
+#T_b7f6f_row9_col9 {
+  background-color: #fffab6;
+  color: #000000;
+}
+#T_b7f6f_row9_col10, #T_b7f6f_row13_col7 {
+  background-color: #fdc574;
+  color: #000000;
+}
+#T_b7f6f_row9_col11, #T_b7f6f_row13_col11, #T_b7f6f_row20_col11 {
+  background-color: #f8fcb6;
+  color: #000000;
+}
+#T_b7f6f_row10_col1, #T_b7f6f_row10_col10, #T_b7f6f_row19_col11 {
+  background-color: #fdb96a;
+  color: #000000;
+}
+#T_b7f6f_row10_col2 {
+  background-color: #f7fcb4;
+  color: #000000;
+}
+#T_b7f6f_row10_col3 {
+  background-color: #fee999;
+  color: #000000;
+}
+#T_b7f6f_row10_col4, #T_b7f6f_row14_col11 {
+  background-color: #fffcba;
+  color: #000000;
+}
+#T_b7f6f_row10_col5 {
+  background-color: #feec9f;
+  color: #000000;
+}
+#T_b7f6f_row10_col6 {
+  background-color: #fee491;
+  color: #000000;
+}
+#T_b7f6f_row10_col7 {
+  background-color: #fdfebc;
+  color: #000000;
+}
+#T_b7f6f_row10_col8 {
+  background-color: #feefa3;
+  color: #000000;
+}
+#T_b7f6f_row10_col9, #T_b7f6f_row20_col2 {
+  background-color: #fee08b;
+  color: #000000;
+}
+#T_b7f6f_row10_col11, #T_b7f6f_row21_col1 {
+  background-color: #f1f9ac;
+  color: #000000;
+}
+#T_b7f6f_row11_col0 {
+  background-color: #feca79;
+  color: #000000;
+}
+#T_b7f6f_row11_col1, #T_b7f6f_row11_col9, #T_b7f6f_row13_col5 {
+  background-color: #f88950;
+  color: #f1f1f1;
+}
+#T_b7f6f_row11_col2 {
+  background-color: #fffbb8;
+  color: #000000;
+}
+#T_b7f6f_row11_col3 {
+  background-color: #fffdbc;
+  color: #000000;
+}
+#T_b7f6f_row11_col5, #T_b7f6f_row11_col6 {
+  background-color: #fece7c;
+  color: #000000;
+}
+#T_b7f6f_row11_col7 {
+  background-color: #feea9b;
+  color: #000000;
+}
+#T_b7f6f_row11_col8 {
+  background-color: #fba05b;
+  color: #000000;
+}
+#T_b7f6f_row11_col10, #T_b7f6f_row19_col1, #T_b7f6f_row19_col2 {
+  background-color: #f7814c;
+  color: #f1f1f1;
+}
+#T_b7f6f_row11_col11, #T_b7f6f_row12_col11 {
+  background-color: #feeda1;
+  color: #000000;
+}
+#T_b7f6f_row12_col0 {
+  background-color: #fdc372;
+  color: #000000;
+}
+#T_b7f6f_row12_col1 {
+  background-color: #fba35c;
+  color: #000000;
+}
+#T_b7f6f_row12_col2, #T_b7f6f_row20_col6 {
+  background-color: #fff3ac;
+  color: #000000;
+}
+#T_b7f6f_row12_col3, #T_b7f6f_row13_col3 {
+  background-color: #f5fbb2;
+  color: #000000;
+}
+#T_b7f6f_row12_col5, #T_b7f6f_row18_col8 {
+  background-color: #fdad60;
+  color: #000000;
+}
+#T_b7f6f_row12_col6 {
+  background-color: #fdbf6f;
+  color: #000000;
+}
+#T_b7f6f_row12_col7, #T_b7f6f_row20_col0 {
+  background-color: #fed27f;
+  color: #000000;
+}
+#T_b7f6f_row12_col8 {
+  background-color: #e24731;
+  color: #f1f1f1;
+}
+#T_b7f6f_row12_col9 {
+  background-color: #ec5c3b;
+  color: #f1f1f1;
+}
+#T_b7f6f_row12_col10 {
+  background-color: #e95538;
+  color: #f1f1f1;
+}
+#T_b7f6f_row13_col0 {
+  background-color: #fed683;
+  color: #000000;
+}
+#T_b7f6f_row13_col6, #T_b7f6f_row14_col6 {
+  background-color: #fdb567;
+  color: #000000;
+}
+#T_b7f6f_row13_col8 {
+  background-color: #ca2427;
+  color: #f1f1f1;
+}
+#T_b7f6f_row13_col9 {
+  background-color: #ee613e;
+  color: #f1f1f1;
+}
+#T_b7f6f_row13_col10, #T_b7f6f_row14_col9 {
+  background-color: #f57547;
+  color: #f1f1f1;
+}
+#T_b7f6f_row14_col0 {
+  background-color: #fff2aa;
+  color: #000000;
+}
+#T_b7f6f_row14_col2 {
+  background-color: #cfeb85;
+  color: #000000;
+}
+#T_b7f6f_row14_col3, #T_b7f6f_row15_col3 {
+  background-color: #e0f295;
+  color: #000000;
+}
+#T_b7f6f_row14_col4 {
+  background-color: #ecf7a6;
+  color: #000000;
+}
+#T_b7f6f_row14_col5 {
+  background-color: #f7844e;
+  color: #f1f1f1;
+}
+#T_b7f6f_row14_col7 {
+  background-color: #fdc171;
+  color: #000000;
+}
+#T_b7f6f_row14_col8 {
+  background-color: #d62f27;
+  color: #f1f1f1;
+}
+#T_b7f6f_row14_col10 {
+  background-color: #fa9b58;
+  color: #000000;
+}
+#T_b7f6f_row15_col0 {
+  background-color: #f67a49;
+  color: #f1f1f1;
+}
+#T_b7f6f_row15_col2, #T_b7f6f_row23_col2 {
+  background-color: #e3f399;
+  color: #000000;
+}
+#T_b7f6f_row15_col4, #T_b7f6f_row19_col8 {
+  background-color: #eef8a8;
+  color: #000000;
+}
+#T_b7f6f_row15_col5, #T_b7f6f_row19_col7 {
+  background-color: #f88c51;
+  color: #f1f1f1;
+}
+#T_b7f6f_row15_col6 {
+  background-color: #fdb768;
+  color: #000000;
+}
+#T_b7f6f_row15_col7 {
+  background-color: #fdbb6c;
+  color: #000000;
+}
+#T_b7f6f_row15_col8 {
+  background-color: #ce2827;
+  color: #f1f1f1;
+}
+#T_b7f6f_row15_col9 {
+  background-color: #c82227;
+  color: #f1f1f1;
+}
+#T_b7f6f_row15_col10 {
+  background-color: #c62027;
+  color: #f1f1f1;
+}
+#T_b7f6f_row15_col11, #T_b7f6f_row16_col2, #T_b7f6f_row18_col11 {
+  background-color: #dc3b2c;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col0, #T_b7f6f_row17_col8 {
+  background-color: #d42d27;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col1, #T_b7f6f_row17_col9 {
+  background-color: #c21c27;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col3 {
+  background-color: #e0422f;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col4 {
+  background-color: #e65036;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col5 {
+  background-color: #bd1726;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col6 {
+  background-color: #ea5739;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col7, #T_b7f6f_row18_col4 {
+  background-color: #e14430;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col8, #T_b7f6f_row16_col9, #T_b7f6f_row16_col10, #T_b7f6f_row17_col1, #T_b7f6f_row17_col2, #T_b7f6f_row17_col3, #T_b7f6f_row17_col4, #T_b7f6f_row17_col5, #T_b7f6f_row17_col6, #T_b7f6f_row17_col7, #T_b7f6f_row17_col11, #T_b7f6f_row18_col0, #T_b7f6f_row18_col6 {
+  background-color: #a50026;
+  color: #f1f1f1;
+}
+#T_b7f6f_row16_col11, #T_b7f6f_row17_col0 {
+  background-color: #a90426;
+  color: #f1f1f1;
+}
+#T_b7f6f_row17_col10 {
+  background-color: #bb1526;
+  color: #f1f1f1;
+}
+#T_b7f6f_row18_col1 {
+  background-color: #cc2627;
+  color: #f1f1f1;
+}
+#T_b7f6f_row18_col2 {
+  background-color: #b71126;
+  color: #f1f1f1;
+}
+#T_b7f6f_row18_col3, #T_b7f6f_row18_col5 {
+  background-color: #e75337;
+  color: #f1f1f1;
+}
+#T_b7f6f_row18_col7 {
+  background-color: #c01a27;
+  color: #f1f1f1;
+}
+#T_b7f6f_row18_col9 {
+  background-color: #f99153;
+  color: #000000;
+}
+#T_b7f6f_row18_col10 {
+  background-color: #f16640;
+  color: #f1f1f1;
+}
+#T_b7f6f_row19_col0 {
+  background-color: #e54e35;
+  color: #f1f1f1;
+}
+#T_b7f6f_row19_col6 {
+  background-color: #f57245;
+  color: #f1f1f1;
+}
+#T_b7f6f_row19_col9 {
+  background-color: #fff1a8;
+  color: #000000;
+}
+#T_b7f6f_row19_col10 {
+  background-color: #fee18d;
+  color: #000000;
+}
+#T_b7f6f_row20_col1 {
+  background-color: #fedc88;
+  color: #000000;
+}
+#T_b7f6f_row20_col5 {
+  background-color: #c1e57b;
+  color: #000000;
+}
+#T_b7f6f_row20_col7 {
+  background-color: #fff8b4;
+  color: #000000;
+}
+#T_b7f6f_row20_col8 {
+  background-color: #96d268;
+  color: #000000;
+}
+#T_b7f6f_row20_col10 {
+  background-color: #c5e67e;
+  color: #000000;
+}
+#T_b7f6f_row21_col0 {
+  background-color: #e6f59d;
+  color: #000000;
+}
+#T_b7f6f_row21_col9 {
+  background-color: #afdd70;
+  color: #000000;
+}
+#T_b7f6f_row22_col0, #T_b7f6f_row23_col6 {
+  background-color: #93d168;
+  color: #000000;
+}
+#T_b7f6f_row22_col1 {
+  background-color: #daf08d;
+  color: #000000;
+}
+#T_b7f6f_row22_col4 {
+  background-color: #33a456;
+  color: #f1f1f1;
+}
+#T_b7f6f_row22_col8 {
+  background-color: #89cc67;
+  color: #000000;
+}
+#T_b7f6f_row22_col9 {
+  background-color: #addc6f;
+  color: #000000;
+}
+#T_b7f6f_row22_col10 {
+  background-color: #219c52;
+  color: #f1f1f1;
+}
+#T_b7f6f_row23_col1, #T_b7f6f_row23_col9 {
+  background-color: #9bd469;
+  color: #000000;
+}
+#T_b7f6f_row23_col5 {
+  background-color: #7ac665;
+  color: #000000;
+}
+#T_b7f6f_row23_col10 {
+  background-color: #097940;
+  color: #f1f1f1;
+}
+</style>
+<table id="T_b7f6f">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_b7f6f_level0_col0" class="col_heading level0 col0" >Jan</th>
+      <th id="T_b7f6f_level0_col1" class="col_heading level0 col1" >Feb</th>
+      <th id="T_b7f6f_level0_col2" class="col_heading level0 col2" >Mar</th>
+      <th id="T_b7f6f_level0_col3" class="col_heading level0 col3" >Apr</th>
+      <th id="T_b7f6f_level0_col4" class="col_heading level0 col4" >May</th>
+      <th id="T_b7f6f_level0_col5" class="col_heading level0 col5" >Jun</th>
+      <th id="T_b7f6f_level0_col6" class="col_heading level0 col6" >Jul</th>
+      <th id="T_b7f6f_level0_col7" class="col_heading level0 col7" >Aug</th>
+      <th id="T_b7f6f_level0_col8" class="col_heading level0 col8" >Sep</th>
+      <th id="T_b7f6f_level0_col9" class="col_heading level0 col9" >Oct</th>
+      <th id="T_b7f6f_level0_col10" class="col_heading level0 col10" >Nov</th>
+      <th id="T_b7f6f_level0_col11" class="col_heading level0 col11" >Dec</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >Hour\Month</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+      <th class="blank col2" >&nbsp;</th>
+      <th class="blank col3" >&nbsp;</th>
+      <th class="blank col4" >&nbsp;</th>
+      <th class="blank col5" >&nbsp;</th>
+      <th class="blank col6" >&nbsp;</th>
+      <th class="blank col7" >&nbsp;</th>
+      <th class="blank col8" >&nbsp;</th>
+      <th class="blank col9" >&nbsp;</th>
+      <th class="blank col10" >&nbsp;</th>
+      <th class="blank col11" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_b7f6f_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b7f6f_row0_col0" class="data row0 col0" >31%</td>
+      <td id="T_b7f6f_row0_col1" class="data row0 col1" >27%</td>
+      <td id="T_b7f6f_row0_col2" class="data row0 col2" >13%</td>
+      <td id="T_b7f6f_row0_col3" class="data row0 col3" >33%</td>
+      <td id="T_b7f6f_row0_col4" class="data row0 col4" >27%</td>
+      <td id="T_b7f6f_row0_col5" class="data row0 col5" >24%</td>
+      <td id="T_b7f6f_row0_col6" class="data row0 col6" >24%</td>
+      <td id="T_b7f6f_row0_col7" class="data row0 col7" >19%</td>
+      <td id="T_b7f6f_row0_col8" class="data row0 col8" >21%</td>
+      <td id="T_b7f6f_row0_col9" class="data row0 col9" >25%</td>
+      <td id="T_b7f6f_row0_col10" class="data row0 col10" >45%</td>
+      <td id="T_b7f6f_row0_col11" class="data row0 col11" >37%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_b7f6f_row1_col0" class="data row1 col0" >39%</td>
+      <td id="T_b7f6f_row1_col1" class="data row1 col1" >33%</td>
+      <td id="T_b7f6f_row1_col2" class="data row1 col2" >14%</td>
+      <td id="T_b7f6f_row1_col3" class="data row1 col3" >32%</td>
+      <td id="T_b7f6f_row1_col4" class="data row1 col4" >23%</td>
+      <td id="T_b7f6f_row1_col5" class="data row1 col5" >19%</td>
+      <td id="T_b7f6f_row1_col6" class="data row1 col6" >24%</td>
+      <td id="T_b7f6f_row1_col7" class="data row1 col7" >18%</td>
+      <td id="T_b7f6f_row1_col8" class="data row1 col8" >19%</td>
+      <td id="T_b7f6f_row1_col9" class="data row1 col9" >25%</td>
+      <td id="T_b7f6f_row1_col10" class="data row1 col10" >44%</td>
+      <td id="T_b7f6f_row1_col11" class="data row1 col11" >40%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_b7f6f_row2_col0" class="data row2 col0" >45%</td>
+      <td id="T_b7f6f_row2_col1" class="data row2 col1" >34%</td>
+      <td id="T_b7f6f_row2_col2" class="data row2 col2" >13%</td>
+      <td id="T_b7f6f_row2_col3" class="data row2 col3" >28%</td>
+      <td id="T_b7f6f_row2_col4" class="data row2 col4" >19%</td>
+      <td id="T_b7f6f_row2_col5" class="data row2 col5" >16%</td>
+      <td id="T_b7f6f_row2_col6" class="data row2 col6" >23%</td>
+      <td id="T_b7f6f_row2_col7" class="data row2 col7" >16%</td>
+      <td id="T_b7f6f_row2_col8" class="data row2 col8" >17%</td>
+      <td id="T_b7f6f_row2_col9" class="data row2 col9" >25%</td>
+      <td id="T_b7f6f_row2_col10" class="data row2 col10" >41%</td>
+      <td id="T_b7f6f_row2_col11" class="data row2 col11" >42%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_b7f6f_row3_col0" class="data row3 col0" >46%</td>
+      <td id="T_b7f6f_row3_col1" class="data row3 col1" >33%</td>
+      <td id="T_b7f6f_row3_col2" class="data row3 col2" >14%</td>
+      <td id="T_b7f6f_row3_col3" class="data row3 col3" >23%</td>
+      <td id="T_b7f6f_row3_col4" class="data row3 col4" >13%</td>
+      <td id="T_b7f6f_row3_col5" class="data row3 col5" >12%</td>
+      <td id="T_b7f6f_row3_col6" class="data row3 col6" >20%</td>
+      <td id="T_b7f6f_row3_col7" class="data row3 col7" >15%</td>
+      <td id="T_b7f6f_row3_col8" class="data row3 col8" >14%</td>
+      <td id="T_b7f6f_row3_col9" class="data row3 col9" >24%</td>
+      <td id="T_b7f6f_row3_col10" class="data row3 col10" >37%</td>
+      <td id="T_b7f6f_row3_col11" class="data row3 col11" >43%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_b7f6f_row4_col0" class="data row4 col0" >43%</td>
+      <td id="T_b7f6f_row4_col1" class="data row4 col1" >28%</td>
+      <td id="T_b7f6f_row4_col2" class="data row4 col2" >11%</td>
+      <td id="T_b7f6f_row4_col3" class="data row4 col3" >14%</td>
+      <td id="T_b7f6f_row4_col4" class="data row4 col4" >1%</td>
+      <td id="T_b7f6f_row4_col5" class="data row4 col5" >5%</td>
+      <td id="T_b7f6f_row4_col6" class="data row4 col6" >14%</td>
+      <td id="T_b7f6f_row4_col7" class="data row4 col7" >12%</td>
+      <td id="T_b7f6f_row4_col8" class="data row4 col8" >10%</td>
+      <td id="T_b7f6f_row4_col9" class="data row4 col9" >22%</td>
+      <td id="T_b7f6f_row4_col10" class="data row4 col10" >33%</td>
+      <td id="T_b7f6f_row4_col11" class="data row4 col11" >40%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_b7f6f_row5_col0" class="data row5 col0" >36%</td>
+      <td id="T_b7f6f_row5_col1" class="data row5 col1" >10%</td>
+      <td id="T_b7f6f_row5_col2" class="data row5 col2" >-2%</td>
+      <td id="T_b7f6f_row5_col3" class="data row5 col3" >10%</td>
+      <td id="T_b7f6f_row5_col4" class="data row5 col4" >16%</td>
+      <td id="T_b7f6f_row5_col5" class="data row5 col5" >26%</td>
+      <td id="T_b7f6f_row5_col6" class="data row5 col6" >25%</td>
+      <td id="T_b7f6f_row5_col7" class="data row5 col7" >18%</td>
+      <td id="T_b7f6f_row5_col8" class="data row5 col8" >11%</td>
+      <td id="T_b7f6f_row5_col9" class="data row5 col9" >15%</td>
+      <td id="T_b7f6f_row5_col10" class="data row5 col10" >18%</td>
+      <td id="T_b7f6f_row5_col11" class="data row5 col11" >27%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_b7f6f_row6_col0" class="data row6 col0" >-3%</td>
+      <td id="T_b7f6f_row6_col1" class="data row6 col1" >-9%</td>
+      <td id="T_b7f6f_row6_col2" class="data row6 col2" >28%</td>
+      <td id="T_b7f6f_row6_col3" class="data row6 col3" >34%</td>
+      <td id="T_b7f6f_row6_col4" class="data row6 col4" >37%</td>
+      <td id="T_b7f6f_row6_col5" class="data row6 col5" >46%</td>
+      <td id="T_b7f6f_row6_col6" class="data row6 col6" >47%</td>
+      <td id="T_b7f6f_row6_col7" class="data row6 col7" >45%</td>
+      <td id="T_b7f6f_row6_col8" class="data row6 col8" >42%</td>
+      <td id="T_b7f6f_row6_col9" class="data row6 col9" >41%</td>
+      <td id="T_b7f6f_row6_col10" class="data row6 col10" >16%</td>
+      <td id="T_b7f6f_row6_col11" class="data row6 col11" >-17%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_b7f6f_row7_col0" class="data row7 col0" >13%</td>
+      <td id="T_b7f6f_row7_col1" class="data row7 col1" >47%</td>
+      <td id="T_b7f6f_row7_col2" class="data row7 col2" >48%</td>
+      <td id="T_b7f6f_row7_col3" class="data row7 col3" >24%</td>
+      <td id="T_b7f6f_row7_col4" class="data row7 col4" >28%</td>
+      <td id="T_b7f6f_row7_col5" class="data row7 col5" >41%</td>
+      <td id="T_b7f6f_row7_col6" class="data row7 col6" >44%</td>
+      <td id="T_b7f6f_row7_col7" class="data row7 col7" >44%</td>
+      <td id="T_b7f6f_row7_col8" class="data row7 col8" >48%</td>
+      <td id="T_b7f6f_row7_col9" class="data row7 col9" >48%</td>
+      <td id="T_b7f6f_row7_col10" class="data row7 col10" >31%</td>
+      <td id="T_b7f6f_row7_col11" class="data row7 col11" >4%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_b7f6f_row8_col0" class="data row8 col0" >16%</td>
+      <td id="T_b7f6f_row8_col1" class="data row8 col1" >33%</td>
+      <td id="T_b7f6f_row8_col2" class="data row8 col2" >27%</td>
+      <td id="T_b7f6f_row8_col3" class="data row8 col3" >-7%</td>
+      <td id="T_b7f6f_row8_col4" class="data row8 col4" >5%</td>
+      <td id="T_b7f6f_row8_col5" class="data row8 col5" >25%</td>
+      <td id="T_b7f6f_row8_col6" class="data row8 col6" >28%</td>
+      <td id="T_b7f6f_row8_col7" class="data row8 col7" >25%</td>
+      <td id="T_b7f6f_row8_col8" class="data row8 col8" >30%</td>
+      <td id="T_b7f6f_row8_col9" class="data row8 col9" >25%</td>
+      <td id="T_b7f6f_row8_col10" class="data row8 col10" >10%</td>
+      <td id="T_b7f6f_row8_col11" class="data row8 col11" >8%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_b7f6f_row9_col0" class="data row9 col0" >-7%</td>
+      <td id="T_b7f6f_row9_col1" class="data row9 col1" >-5%</td>
+      <td id="T_b7f6f_row9_col2" class="data row9 col2" >-1%</td>
+      <td id="T_b7f6f_row9_col3" class="data row9 col3" >-24%</td>
+      <td id="T_b7f6f_row9_col4" class="data row9 col4" >-10%</td>
+      <td id="T_b7f6f_row9_col5" class="data row9 col5" >7%</td>
+      <td id="T_b7f6f_row9_col6" class="data row9 col6" >9%</td>
+      <td id="T_b7f6f_row9_col7" class="data row9 col7" >8%</td>
+      <td id="T_b7f6f_row9_col8" class="data row9 col8" >8%</td>
+      <td id="T_b7f6f_row9_col9" class="data row9 col9" >-4%</td>
+      <td id="T_b7f6f_row9_col10" class="data row9 col10" >-21%</td>
+      <td id="T_b7f6f_row9_col11" class="data row9 col11" >-6%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_b7f6f_row10_col0" class="data row10 col0" >-10%</td>
+      <td id="T_b7f6f_row10_col1" class="data row10 col1" >-20%</td>
+      <td id="T_b7f6f_row10_col2" class="data row10 col2" >0%</td>
+      <td id="T_b7f6f_row10_col3" class="data row10 col3" >-23%</td>
+      <td id="T_b7f6f_row10_col4" class="data row10 col4" >-14%</td>
+      <td id="T_b7f6f_row10_col5" class="data row10 col5" >-10%</td>
+      <td id="T_b7f6f_row10_col6" class="data row10 col6" >-12%</td>
+      <td id="T_b7f6f_row10_col7" class="data row10 col7" >-4%</td>
+      <td id="T_b7f6f_row10_col8" class="data row10 col8" >-7%</td>
+      <td id="T_b7f6f_row10_col9" class="data row10 col9" >-12%</td>
+      <td id="T_b7f6f_row10_col10" class="data row10 col10" >-23%</td>
+      <td id="T_b7f6f_row10_col11" class="data row10 col11" >-4%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_b7f6f_row11_col0" class="data row11 col0" >-18%</td>
+      <td id="T_b7f6f_row11_col1" class="data row11 col1" >-28%</td>
+      <td id="T_b7f6f_row11_col2" class="data row11 col2" >-3%</td>
+      <td id="T_b7f6f_row11_col3" class="data row11 col3" >-16%</td>
+      <td id="T_b7f6f_row11_col4" class="data row11 col4" >-13%</td>
+      <td id="T_b7f6f_row11_col5" class="data row11 col5" >-18%</td>
+      <td id="T_b7f6f_row11_col6" class="data row11 col6" >-17%</td>
+      <td id="T_b7f6f_row11_col7" class="data row11 col7" >-11%</td>
+      <td id="T_b7f6f_row11_col8" class="data row11 col8" >-24%</td>
+      <td id="T_b7f6f_row11_col9" class="data row11 col9" >-27%</td>
+      <td id="T_b7f6f_row11_col10" class="data row11 col10" >-32%</td>
+      <td id="T_b7f6f_row11_col11" class="data row11 col11" >-13%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_b7f6f_row12_col0" class="data row12 col0" >-20%</td>
+      <td id="T_b7f6f_row12_col1" class="data row12 col1" >-24%</td>
+      <td id="T_b7f6f_row12_col2" class="data row12 col2" >-6%</td>
+      <td id="T_b7f6f_row12_col3" class="data row12 col3" >-13%</td>
+      <td id="T_b7f6f_row12_col4" class="data row12 col4" >-15%</td>
+      <td id="T_b7f6f_row12_col5" class="data row12 col5" >-25%</td>
+      <td id="T_b7f6f_row12_col6" class="data row12 col6" >-20%</td>
+      <td id="T_b7f6f_row12_col7" class="data row12 col7" >-17%</td>
+      <td id="T_b7f6f_row12_col8" class="data row12 col8" >-38%</td>
+      <td id="T_b7f6f_row12_col9" class="data row12 col9" >-34%</td>
+      <td id="T_b7f6f_row12_col10" class="data row12 col10" >-39%</td>
+      <td id="T_b7f6f_row12_col11" class="data row12 col11" >-13%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_b7f6f_row13_col0" class="data row13 col0" >-16%</td>
+      <td id="T_b7f6f_row13_col1" class="data row13 col1" >-5%</td>
+      <td id="T_b7f6f_row13_col2" class="data row13 col2" >-1%</td>
+      <td id="T_b7f6f_row13_col3" class="data row13 col3" >-13%</td>
+      <td id="T_b7f6f_row13_col4" class="data row13 col4" >-13%</td>
+      <td id="T_b7f6f_row13_col5" class="data row13 col5" >-30%</td>
+      <td id="T_b7f6f_row13_col6" class="data row13 col6" >-22%</td>
+      <td id="T_b7f6f_row13_col7" class="data row13 col7" >-20%</td>
+      <td id="T_b7f6f_row13_col8" class="data row13 col8" >-44%</td>
+      <td id="T_b7f6f_row13_col9" class="data row13 col9" >-33%</td>
+      <td id="T_b7f6f_row13_col10" class="data row13 col10" >-34%</td>
+      <td id="T_b7f6f_row13_col11" class="data row13 col11" >-6%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_b7f6f_row14_col0" class="data row14 col0" >-8%</td>
+      <td id="T_b7f6f_row14_col1" class="data row14 col1" >13%</td>
+      <td id="T_b7f6f_row14_col2" class="data row14 col2" >10%</td>
+      <td id="T_b7f6f_row14_col3" class="data row14 col3" >-8%</td>
+      <td id="T_b7f6f_row14_col4" class="data row14 col4" >-8%</td>
+      <td id="T_b7f6f_row14_col5" class="data row14 col5" >-31%</td>
+      <td id="T_b7f6f_row14_col6" class="data row14 col6" >-22%</td>
+      <td id="T_b7f6f_row14_col7" class="data row14 col7" >-21%</td>
+      <td id="T_b7f6f_row14_col8" class="data row14 col8" >-42%</td>
+      <td id="T_b7f6f_row14_col9" class="data row14 col9" >-30%</td>
+      <td id="T_b7f6f_row14_col10" class="data row14 col10" >-28%</td>
+      <td id="T_b7f6f_row14_col11" class="data row14 col11" >-8%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_b7f6f_row15_col0" class="data row15 col0" >-32%</td>
+      <td id="T_b7f6f_row15_col1" class="data row15 col1" >-5%</td>
+      <td id="T_b7f6f_row15_col2" class="data row15 col2" >5%</td>
+      <td id="T_b7f6f_row15_col3" class="data row15 col3" >-8%</td>
+      <td id="T_b7f6f_row15_col4" class="data row15 col4" >-8%</td>
+      <td id="T_b7f6f_row15_col5" class="data row15 col5" >-30%</td>
+      <td id="T_b7f6f_row15_col6" class="data row15 col6" >-21%</td>
+      <td id="T_b7f6f_row15_col7" class="data row15 col7" >-22%</td>
+      <td id="T_b7f6f_row15_col8" class="data row15 col8" >-44%</td>
+      <td id="T_b7f6f_row15_col9" class="data row15 col9" >-44%</td>
+      <td id="T_b7f6f_row15_col10" class="data row15 col10" >-48%</td>
+      <td id="T_b7f6f_row15_col11" class="data row15 col11" >-45%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row16" class="row_heading level0 row16" >16</th>
+      <td id="T_b7f6f_row16_col0" class="data row16 col0" >-44%</td>
+      <td id="T_b7f6f_row16_col1" class="data row16 col1" >-46%</td>
+      <td id="T_b7f6f_row16_col2" class="data row16 col2" >-40%</td>
+      <td id="T_b7f6f_row16_col3" class="data row16 col3" >-52%</td>
+      <td id="T_b7f6f_row16_col4" class="data row16 col4" >-47%</td>
+      <td id="T_b7f6f_row16_col5" class="data row16 col5" >-49%</td>
+      <td id="T_b7f6f_row16_col6" class="data row16 col6" >-37%</td>
+      <td id="T_b7f6f_row16_col7" class="data row16 col7" >-41%</td>
+      <td id="T_b7f6f_row16_col8" class="data row16 col8" >-52%</td>
+      <td id="T_b7f6f_row16_col9" class="data row16 col9" >-52%</td>
+      <td id="T_b7f6f_row16_col10" class="data row16 col10" >-55%</td>
+      <td id="T_b7f6f_row16_col11" class="data row16 col11" >-56%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row17" class="row_heading level0 row17" >17</th>
+      <td id="T_b7f6f_row17_col0" class="data row17 col0" >-53%</td>
+      <td id="T_b7f6f_row17_col1" class="data row17 col1" >-53%</td>
+      <td id="T_b7f6f_row17_col2" class="data row17 col2" >-52%</td>
+      <td id="T_b7f6f_row17_col3" class="data row17 col3" >-66%</td>
+      <td id="T_b7f6f_row17_col4" class="data row17 col4" >-63%</td>
+      <td id="T_b7f6f_row17_col5" class="data row17 col5" >-54%</td>
+      <td id="T_b7f6f_row17_col6" class="data row17 col6" >-53%</td>
+      <td id="T_b7f6f_row17_col7" class="data row17 col7" >-54%</td>
+      <td id="T_b7f6f_row17_col8" class="data row17 col8" >-43%</td>
+      <td id="T_b7f6f_row17_col9" class="data row17 col9" >-46%</td>
+      <td id="T_b7f6f_row17_col10" class="data row17 col10" >-51%</td>
+      <td id="T_b7f6f_row17_col11" class="data row17 col11" >-57%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row18" class="row_heading level0 row18" >18</th>
+      <td id="T_b7f6f_row18_col0" class="data row18 col0" >-54%</td>
+      <td id="T_b7f6f_row18_col1" class="data row18 col1" >-44%</td>
+      <td id="T_b7f6f_row18_col2" class="data row18 col2" >-48%</td>
+      <td id="T_b7f6f_row18_col3" class="data row18 col3" >-50%</td>
+      <td id="T_b7f6f_row18_col4" class="data row18 col4" >-49%</td>
+      <td id="T_b7f6f_row18_col5" class="data row18 col5" >-39%</td>
+      <td id="T_b7f6f_row18_col6" class="data row18 col6" >-53%</td>
+      <td id="T_b7f6f_row18_col7" class="data row18 col7" >-49%</td>
+      <td id="T_b7f6f_row18_col8" class="data row18 col8" >-22%</td>
+      <td id="T_b7f6f_row18_col9" class="data row18 col9" >-26%</td>
+      <td id="T_b7f6f_row18_col10" class="data row18 col10" >-36%</td>
+      <td id="T_b7f6f_row18_col11" class="data row18 col11" >-45%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row19" class="row_heading level0 row19" >19</th>
+      <td id="T_b7f6f_row19_col0" class="data row19 col0" >-39%</td>
+      <td id="T_b7f6f_row19_col1" class="data row19 col1" >-29%</td>
+      <td id="T_b7f6f_row19_col2" class="data row19 col2" >-29%</td>
+      <td id="T_b7f6f_row19_col3" class="data row19 col3" >-18%</td>
+      <td id="T_b7f6f_row19_col4" class="data row19 col4" >-19%</td>
+      <td id="T_b7f6f_row19_col5" class="data row19 col5" >-13%</td>
+      <td id="T_b7f6f_row19_col6" class="data row19 col6" >-33%</td>
+      <td id="T_b7f6f_row19_col7" class="data row19 col7" >-30%</td>
+      <td id="T_b7f6f_row19_col8" class="data row19 col8" >2%</td>
+      <td id="T_b7f6f_row19_col9" class="data row19 col9" >-6%</td>
+      <td id="T_b7f6f_row19_col10" class="data row19 col10" >-14%</td>
+      <td id="T_b7f6f_row19_col11" class="data row19 col11" >-25%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row20" class="row_heading level0 row20" >20</th>
+      <td id="T_b7f6f_row20_col0" class="data row20 col0" >-17%</td>
+      <td id="T_b7f6f_row20_col1" class="data row20 col1" >-13%</td>
+      <td id="T_b7f6f_row20_col2" class="data row20 col2" >-12%</td>
+      <td id="T_b7f6f_row20_col3" class="data row20 col3" >11%</td>
+      <td id="T_b7f6f_row20_col4" class="data row20 col4" >8%</td>
+      <td id="T_b7f6f_row20_col5" class="data row20 col5" >10%</td>
+      <td id="T_b7f6f_row20_col6" class="data row20 col6" >-7%</td>
+      <td id="T_b7f6f_row20_col7" class="data row20 col7" >-7%</td>
+      <td id="T_b7f6f_row20_col8" class="data row20 col8" >20%</td>
+      <td id="T_b7f6f_row20_col9" class="data row20 col9" >8%</td>
+      <td id="T_b7f6f_row20_col10" class="data row20 col10" >9%</td>
+      <td id="T_b7f6f_row20_col11" class="data row20 col11" >-6%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row21" class="row_heading level0 row21" >21</th>
+      <td id="T_b7f6f_row21_col0" class="data row21 col0" >2%</td>
+      <td id="T_b7f6f_row21_col1" class="data row21 col1" >1%</td>
+      <td id="T_b7f6f_row21_col2" class="data row21 col2" >-1%</td>
+      <td id="T_b7f6f_row21_col3" class="data row21 col3" >27%</td>
+      <td id="T_b7f6f_row21_col4" class="data row21 col4" >24%</td>
+      <td id="T_b7f6f_row21_col5" class="data row21 col5" >26%</td>
+      <td id="T_b7f6f_row21_col6" class="data row21 col6" >12%</td>
+      <td id="T_b7f6f_row21_col7" class="data row21 col7" >12%</td>
+      <td id="T_b7f6f_row21_col8" class="data row21 col8" >27%</td>
+      <td id="T_b7f6f_row21_col9" class="data row21 col9" >16%</td>
+      <td id="T_b7f6f_row21_col10" class="data row21 col10" >24%</td>
+      <td id="T_b7f6f_row21_col11" class="data row21 col11" >9%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row22" class="row_heading level0 row22" >22</th>
+      <td id="T_b7f6f_row22_col0" class="data row22 col0" >19%</td>
+      <td id="T_b7f6f_row22_col1" class="data row22 col1" >7%</td>
+      <td id="T_b7f6f_row22_col2" class="data row22 col2" >-1%</td>
+      <td id="T_b7f6f_row22_col3" class="data row22 col3" >27%</td>
+      <td id="T_b7f6f_row22_col4" class="data row22 col4" >24%</td>
+      <td id="T_b7f6f_row22_col5" class="data row22 col5" >22%</td>
+      <td id="T_b7f6f_row22_col6" class="data row22 col6" >12%</td>
+      <td id="T_b7f6f_row22_col7" class="data row22 col7" >15%</td>
+      <td id="T_b7f6f_row22_col8" class="data row22 col8" >22%</td>
+      <td id="T_b7f6f_row22_col9" class="data row22 col9" >17%</td>
+      <td id="T_b7f6f_row22_col10" class="data row22 col10" >34%</td>
+      <td id="T_b7f6f_row22_col11" class="data row22 col11" >23%</td>
+    </tr>
+    <tr>
+      <th id="T_b7f6f_level0_row23" class="row_heading level0 row23" >23</th>
+      <td id="T_b7f6f_row23_col0" class="data row23 col0" >27%</td>
+      <td id="T_b7f6f_row23_col1" class="data row23 col1" >19%</td>
+      <td id="T_b7f6f_row23_col2" class="data row23 col2" >5%</td>
+      <td id="T_b7f6f_row23_col3" class="data row23 col3" >34%</td>
+      <td id="T_b7f6f_row23_col4" class="data row23 col4" >30%</td>
+      <td id="T_b7f6f_row23_col5" class="data row23 col5" >22%</td>
+      <td id="T_b7f6f_row23_col6" class="data row23 col6" >19%</td>
+      <td id="T_b7f6f_row23_col7" class="data row23 col7" >22%</td>
+      <td id="T_b7f6f_row23_col8" class="data row23 col8" >24%</td>
+      <td id="T_b7f6f_row23_col9" class="data row23 col9" >20%</td>
+      <td id="T_b7f6f_row23_col10" class="data row23 col10" >41%</td>
+      <td id="T_b7f6f_row23_col11" class="data row23 col11" >32%</td>
+    </tr>
+  </tbody>
+</table>
+
+                    <h5> Table 1.2</h5>
+                </div>
+            </div>
+        
+        <p> Figure 1.8 shows the diurnal variation, average hourly windspeed, and the time of occurence of the maximum and minimum windspeed for a given month. </p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/2412.png" >
+                <figcaption>Figure 1.8 Diurnal Variation</figcaption>
+            </div>
+
+        <h2> 1.3 Configuration Study</h2>
+        <h3> 1.3.1 Single Turbine</h3>
+        <p> The following figure illustrates the net capacity factor of single turbine at various heights. The net capacity factor is calculated as followingsNet Capacity Factor (%) = (total energy production of 20 yeas)/20/(rated output of wind turbine x 8760) 
+            Rated output - 6500kW, 7000kW or 8000 kW etc. </p>
+        
+        <div class="figure-container">
+            <img src="pdf_elements/saudi/net_capacity.png" width="600" height="300">
+            <figcaption>Figure 1.9 Gross Capacity (%) for Each WTG</figcaption>
+        </div>
+
+        <h3> 1.3.2 Estimate Coverages for Various Configurations with Bess (One WTG)</h3>
+        <p> </p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/power_bess_plots.png" width="600" height="300">
+                <figcaption>Figure 1.10 Changes in Coverage with BESS Configurations</figcaption>
+            </div>
+
+        <h3> 1.3.3 Coverage Change with Hub Height</h3>
+        <p> </p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/power_height_plots.png" width="600" height="300">
+                <figcaption>Figure 1.11 Changes in Coverage with Height</figcaption>
+
+            </div>
+        
+        <h3> 1.3.4 Coverage Change with Increasing Number of WTGs</h3>
+        <p> The following figure shows the change in coverage with increasing number of WTGs, where BESS storage is kept at the most efficient level and the height set to 100m.</p>
+
+            <div class="figure-container">
+                <img src="pdf_elements/saudi/power_wtgs_plots.png" width="600" height="300">
+                <figcaption>Figure 1.12 Changes in Coverage with Different Numbers of WTGs</figcaption>
+            </div>
+
+
+    </div>
+    </div>
+    
+
+
+
+
+
+
+
+</body>
+</html>
